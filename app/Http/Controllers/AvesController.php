@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Producto;
+use App\Models\Ave;
 use Illuminate\Support\Facades\Validator;
 
-
-class ProductoController extends Controller
+class AvesController extends Controller
 {
-    
     public function index()
     {
         //
-        $productos = Producto::all();
+        $productos = Ave::all();
         return $productos;
     }
 
@@ -22,7 +20,7 @@ class ProductoController extends Controller
     {
         //
         $inputs = $request->input();
-        $producto = Producto::create($inputs);
+        $producto = Ave::create($inputs);
         return response()->json([
             'data'=>$producto,
             'mensaje'=>"Producto creado con exito.",
@@ -45,7 +43,7 @@ class ProductoController extends Controller
     public function show(string $id)
     {
         //
-        $producto = Producto::find($id);
+        $producto = Ave::find($id);
         if(isset($producto)){
             return response()->json([
                     'data'=>$producto,
@@ -65,9 +63,9 @@ class ProductoController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $producto = Producto::find($id);
+        $producto = Ave::find($id);
         if(isset($producto)){
-            $producto->folio=$request->folio;
+            
             $producto->nombre=$request->nombre;
             $producto->precio=$request->precio;
             $producto->descripcion=$request->descripcion;
@@ -93,7 +91,7 @@ class ProductoController extends Controller
     public function destroy(string $id)
     {
         //
-        $producto = Producto::find($id);
+        $producto = Ave::find($id);
         if(isset($producto)){
             $producto->delete();
             return response()->json([

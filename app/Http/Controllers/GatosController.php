@@ -3,17 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Producto;
 use Illuminate\Support\Facades\Validator;
-
-
-class ProductoController extends Controller
+use App\Models\Gatos;
+class GatosController extends Controller
 {
-    
     public function index()
     {
         //
-        $productos = Producto::all();
+        $productos = Gatos::all();
         return $productos;
     }
 
@@ -22,7 +19,7 @@ class ProductoController extends Controller
     {
         //
         $inputs = $request->input();
-        $producto = Producto::create($inputs);
+        $producto = Gatos::create($inputs);
         return response()->json([
             'data'=>$producto,
             'mensaje'=>"Producto creado con exito.",
@@ -45,7 +42,7 @@ class ProductoController extends Controller
     public function show(string $id)
     {
         //
-        $producto = Producto::find($id);
+        $producto = Gatos::find($id);
         if(isset($producto)){
             return response()->json([
                     'data'=>$producto,
@@ -65,9 +62,9 @@ class ProductoController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $producto = Producto::find($id);
+        $producto = Gatos::find($id);
         if(isset($producto)){
-            $producto->folio=$request->folio;
+            
             $producto->nombre=$request->nombre;
             $producto->precio=$request->precio;
             $producto->descripcion=$request->descripcion;
@@ -93,7 +90,7 @@ class ProductoController extends Controller
     public function destroy(string $id)
     {
         //
-        $producto = Producto::find($id);
+        $producto = Gatos::find($id);
         if(isset($producto)){
             $producto->delete();
             return response()->json([
